@@ -1,0 +1,92 @@
+<!doctype html>
+<html lang="ko">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+    <meta name="theme-color" content="#0d0f13">
+    <meta name="color-scheme" content="dark">
+    <meta name="description" content="전체 로또 회차 통계를 반영해 번호를 생성하는 동접 로또">
+    <title>동접 로또</title>
+    <link rel="manifest" href="/manifest.webmanifest">
+    <link rel="icon" type="image/png" sizes="96x96" href="/icon-96.png">
+    <link rel="apple-touch-icon" href="/icon-192.png">
+    <link rel="stylesheet" href="/styles.css">
+    <script type="module" src="/app.js"></script>
+  </head>
+  <body>
+    <main class="app-shell">
+      <header class="app-header">
+        <div class="brand">
+          <img src="/icon-96.png" width="48" height="48" alt="">
+          <h1>동접 로또</h1>
+        </div>
+        <button id="refresh-button" class="icon-button" type="button" aria-label="최신 회차 새로고침" title="새로고침">
+          <span aria-hidden="true">↻</span>
+        </button>
+      </header>
+
+      <p id="notice" class="notice" role="status" hidden></p>
+
+      <section class="latest-card" aria-labelledby="latest-title">
+        <div class="section-heading">
+          <div>
+            <span class="eyebrow">최근 추첨 번호</span>
+            <h2 id="latest-title"><span id="latest-round">-</span>회</h2>
+          </div>
+          <time id="latest-date" datetime="">확인 중</time>
+        </div>
+        <div id="latest-balls" class="balls latest-balls" aria-live="polite">
+          <span class="loading-text">결과를 불러오고 있습니다</span>
+        </div>
+      </section>
+
+      <section class="generator-card" aria-labelledby="generator-title">
+        <div class="section-heading">
+          <div>
+            <span class="eyebrow">1회부터 최신 회차까지</span>
+            <h2 id="generator-title">통계 기반 번호</h2>
+          </div>
+          <span id="remaining-count" class="remaining">오늘 2번 남음</span>
+        </div>
+        <p class="description">
+          전체 회차 본번호의 출현 횟수를 가중치로 사용하고, 과거 당첨 조합과 같은 조합은 제외합니다.
+        </p>
+        <button id="generate-button" class="primary-button" type="button" disabled>추천 번호 5세트 만들기</button>
+
+        <div id="generated-sets" class="generated-sets" aria-live="polite">
+          <p class="empty-result">버튼을 누르면 추천 번호가 여기에 표시됩니다.</p>
+        </div>
+        <p id="basis-notice" class="basis-notice" hidden></p>
+        <p class="disclaimer">
+          통계는 과거 기록을 정리한 참고 자료이며 당첨 가능성을 높이거나 당첨을 보장하지 않습니다. 생성 횟수는 이 기기의 한국 시간 기준으로 하루 2번입니다.
+        </p>
+      </section>
+
+      <section class="stats-card" aria-labelledby="stats-title">
+        <div class="section-heading">
+          <div>
+            <span class="eyebrow">본번호 기준 · 보너스 제외</span>
+            <h2 id="stats-title">번호 통계</h2>
+          </div>
+          <span id="round-count" class="round-count">확인 중</span>
+        </div>
+        <div id="stats-grid" class="stats-grid" aria-label="1번부터 45번까지 출현 횟수"></div>
+      </section>
+
+      <details class="install-card">
+        <summary>Chrome에서 홈 화면에 추가</summary>
+        <div class="install-guide">
+          <p>갤럭시와 아이폰에서 이 주소를 Chrome으로 열어 바로 사용할 수 있습니다.</p>
+          <ol>
+            <li>Chrome의 메뉴 또는 공유 버튼을 누릅니다.</li>
+            <li><strong>홈 화면에 추가</strong>를 선택합니다.</li>
+          </ol>
+        </div>
+      </details>
+
+      <footer>
+        복권 구매·결제·당첨금 지급 기능이 없는 참고용 도구입니다. 동행복권과 제휴 또는 후원 관계가 없습니다.
+      </footer>
+    </main>
+  </body>
+</html>
