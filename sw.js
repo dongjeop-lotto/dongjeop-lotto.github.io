@@ -1,14 +1,14 @@
-const CACHE_NAME = "dongjeop-lotto-github-pages-v3";
+const CACHE_NAME = "dongjeop-lotto-github-pages-v4";
 const APP_SHELL = [
   "/",
   "/index.html",
-  "/styles.css",
-  "/app.js",
+  "/styles.css?v=4",
+  "/app.js?v=4",
   "/manifest.webmanifest",
   "/icon-96.png",
   "/icon-192.png",
   "/icon-512.png",
-  "/seed.json"
+  "/seed.json?v=4"
 ];
 
 self.addEventListener("install", (event) => {
@@ -43,9 +43,11 @@ self.addEventListener("fetch", (event) => {
   }
 
   event.respondWith(
-    caches.match(request).then((cached) => cached ?? fetch(request).then((response) => {
-      if (response.ok) void caches.open(CACHE_NAME).then((cache) => cache.put(request, response.clone()));
-      return response;
-    })),
+    fetch(request)
+      .then((response) => {
+        if (response.ok) void caches.open(CACHE_NAME).then((cache) => cache.put(request, response.clone()));
+        return response;
+      })
+      .catch(async () => (await caches.match(request)) ?? Response.error()),
   );
 });
