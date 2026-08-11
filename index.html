@@ -10,8 +10,8 @@
     <link rel="manifest" href="/manifest.webmanifest">
     <link rel="icon" type="image/png" sizes="96x96" href="/icon-96.png">
     <link rel="apple-touch-icon" href="/icon-192.png">
-    <link rel="stylesheet" href="/styles.css?v=4">
-    <script type="module" src="/app.js?v=4"></script>
+    <link rel="stylesheet" href="/styles.css?v=5">
+    <script type="module" src="/app.js?v=5"></script>
   </head>
   <body>
     <main class="app-shell">
@@ -88,6 +88,16 @@
               <span class="round-number-label" aria-hidden="true">보너스번호</span>
             </div>
           </div>
+          <section class="winner-count-section" aria-labelledby="winner-count-title">
+            <h4 id="winner-count-title">등수별 당첨자 수</h4>
+            <dl id="winner-count-list" class="winner-count-list" aria-label="1등부터 5등까지 당첨자 수">
+              <div class="winner-count-item">
+                <dt>1등</dt>
+                <dd>확인 중</dd>
+              </div>
+            </dl>
+            <p id="winner-count-note" class="winner-count-note" role="status" aria-live="polite" hidden></p>
+          </section>
           <p id="round-detail-status" class="sr-only" role="status" aria-live="polite"></p>
         </article>
       </section>
@@ -101,7 +111,7 @@
           <span id="remaining-count" class="remaining">오늘 2번 남음</span>
         </div>
         <p class="description">
-          전체 회차 본번호의 출현 횟수를 가중치로 사용하고, 과거 당첨 조합과 같은 조합은 제외합니다.
+          추천 5세트 중 1세트는 과거 실제 당첨 조합을 무작위로 포함합니다. 나머지 4세트는 전체 회차 본번호의 출현 횟수를 가중치로 사용하며, 과거 당첨 조합 및 같은 추천 조합과 겹치지 않게 만듭니다.
         </p>
         <button id="generate-button" class="primary-button" type="button" disabled>추천 번호 5세트 만들기</button>
 
@@ -110,7 +120,7 @@
         </div>
         <p id="basis-notice" class="basis-notice" hidden></p>
         <p class="disclaimer">
-          통계는 과거 기록을 정리한 참고 자료이며 당첨 가능성을 높이거나 당첨을 보장하지 않습니다. 생성 횟수는 이 기기의 한국 시간 기준으로 하루 2번입니다.
+          과거 조합의 재등장 가능성을 보기 위해 1세트를 포함하지만, 모든 6개 번호 조합의 실제 당첨 확률은 동일합니다. 통계는 참고 자료이며 당첨을 보장하지 않습니다. 생성 횟수는 이 기기의 한국 시간 기준으로 하루 2번입니다.
         </p>
       </section>
 

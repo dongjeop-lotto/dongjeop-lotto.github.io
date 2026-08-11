@@ -319,6 +319,63 @@ section,
   background: var(--line);
 }
 
+.winner-count-section {
+  margin-top: 24px;
+  padding-top: 20px;
+  border-top: 1px solid var(--line);
+}
+
+.winner-count-section h4 {
+  margin: 0 0 12px;
+  color: #dfe2e7;
+  font-size: 13px;
+  letter-spacing: -0.02em;
+  text-align: center;
+}
+
+.winner-count-list {
+  display: grid;
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  gap: 7px;
+  margin: 0;
+}
+
+.winner-count-item {
+  display: flex;
+  min-width: 0;
+  min-height: 62px;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  gap: 5px;
+  padding: 8px 4px;
+  border-radius: 13px;
+  background: rgba(255, 255, 255, 0.045);
+  text-align: center;
+}
+
+.winner-count-item dt {
+  color: var(--muted);
+  font-size: 11px;
+  font-weight: 800;
+}
+
+.winner-count-item dd {
+  margin: 0;
+  color: var(--text);
+  font-size: 12px;
+  font-weight: 850;
+  white-space: nowrap;
+}
+
+.winner-count-note {
+  margin: 10px 0 0;
+  color: var(--warning);
+  font-size: 11px;
+  line-height: 1.5;
+  text-align: center;
+}
+
 .round-search label {
   display: block;
   margin: 0 0 7px 2px;
@@ -594,6 +651,9 @@ select:focus-visible,
   .selected-winning-balls, .selected-bonus-ball { min-height: 30px; }
   .round-detail-plus { align-self: start; margin: 5px 0 0; font-size: 19px; }
   .round-number-label { gap: 5px; margin-top: 12px; font-size: 10px; }
+  .winner-count-section { margin-top: 20px; padding-top: 17px; }
+  .winner-count-list { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 6px; }
+  .winner-count-item { min-height: 58px; }
   .round-row { grid-template-columns: 1fr; gap: 9px; padding: 11px; }
   .round-meta { flex-direction: row; align-items: baseline; justify-content: space-between; }
   .round-balls { gap: 4px; }
