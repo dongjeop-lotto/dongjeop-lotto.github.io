@@ -40,6 +40,43 @@
         </div>
       </section>
 
+      <section id="rounds" class="rounds-card" aria-labelledby="rounds-title">
+        <div class="section-heading">
+          <div>
+            <span class="eyebrow">1회부터 최신 회차까지</span>
+            <h2 id="rounds-title">전체 당첨 결과</h2>
+          </div>
+          <span id="round-browser-count" class="round-count">확인 중</span>
+        </div>
+        <p class="description rounds-description">최근 회차부터 둘러보거나 원하는 회차를 바로 찾아보세요.</p>
+        <form id="round-search-form" class="round-search" role="search" novalidate>
+          <label for="round-search-input">회차 번호 검색</label>
+          <div class="round-search-row">
+            <input
+              id="round-search-input"
+              class="round-search-input"
+              type="search"
+              inputmode="numeric"
+              pattern="[0-9]*"
+              maxlength="5"
+              enterkeyhint="search"
+              autocomplete="off"
+              placeholder="예: 1000"
+              aria-describedby="round-search-help"
+            >
+            <button id="round-search-button" class="round-search-button" type="submit">검색</button>
+          </div>
+          <p id="round-search-help" class="round-search-help">1회부터 <span id="round-search-latest">-</span>회까지 검색할 수 있습니다.</p>
+        </form>
+        <p id="round-results-status" class="round-results-status" role="status" aria-live="polite">회차를 불러오고 있습니다.</p>
+        <ul id="round-list" class="round-list" aria-label="회차별 당첨 번호">
+          <li class="empty-rounds">결과를 불러오고 있습니다.</li>
+        </ul>
+        <button id="load-more-rounds" class="secondary-button" type="button" aria-controls="round-list" hidden>
+          이전 회차 30개 더 보기
+        </button>
+      </section>
+
       <section class="generator-card" aria-labelledby="generator-title">
         <div class="section-heading">
           <div>
