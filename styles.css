@@ -139,11 +139,11 @@ section,
   box-shadow: inset 0 1px 1px rgba(255, 255, 255, 0.34), 0 5px 12px rgba(0, 0, 0, 0.25);
 }
 
-.yellow { background: #e7ae1f; }
-.blue { background: #438fd2; }
-.red { background: #df5a50; }
-.gray { background: #707782; }
-.green { background: #45a36b; }
+.yellow { background: #e7ae1f; color: #11140b; text-shadow: none; }
+.blue { background: #0968bd; }
+.red { background: #b83246; }
+.gray { background: #67707e; }
+.green { background: #257847; }
 .plus { flex: 0 0 auto; color: var(--muted); font-size: 19px; }
 .loading-text { color: var(--muted); font-size: 14px; }
 
@@ -165,6 +165,159 @@ section,
 }
 
 .rounds-description { margin-bottom: 14px; }
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+.round-selector-heading {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  margin-bottom: 18px;
+}
+
+.round-selector-heading h2 { margin: 0; font-size: 25px; letter-spacing: -0.045em; }
+
+.round-select-label { position: relative; flex: 0 0 auto; }
+
+.round-select-label::after {
+  content: "⌄";
+  position: absolute;
+  top: 50%;
+  right: 16px;
+  color: var(--muted);
+  pointer-events: none;
+  transform: translateY(-58%);
+}
+
+.round-select-label select {
+  width: 142px;
+  min-height: 48px;
+  appearance: none;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  background: var(--surface-2);
+  color: var(--text);
+  padding: 0 42px 0 18px;
+  font: inherit;
+  font-size: 16px;
+  text-align: center;
+  cursor: pointer;
+}
+
+.round-select-label select:disabled { cursor: wait; opacity: 0.55; }
+
+.round-detail {
+  padding: 28px 24px 24px;
+  border: 1px solid var(--line);
+  border-radius: 20px;
+  background: var(--surface-2);
+  outline: 0;
+}
+
+.round-detail-navigation {
+  display: grid;
+  grid-template-columns: 50px minmax(0, 1fr) 50px;
+  align-items: center;
+  gap: 14px;
+}
+
+.round-detail-heading { min-width: 0; text-align: center; }
+
+.round-detail-heading h3 {
+  margin: 0;
+  font-size: clamp(21px, 4vw, 28px);
+  letter-spacing: -0.045em;
+}
+
+.round-detail-heading strong { color: var(--accent); font-weight: 850; }
+
+.round-detail-heading time {
+  display: block;
+  margin-top: 12px;
+  color: var(--muted);
+  font-size: 13px;
+  font-weight: 700;
+}
+
+.round-nav-button {
+  display: grid;
+  width: 48px;
+  height: 48px;
+  place-items: center;
+  border: 1px solid rgba(255, 255, 255, 0.28);
+  border-radius: 50%;
+  background: transparent;
+  color: var(--text);
+  cursor: pointer;
+  font-size: 24px;
+}
+
+.round-nav-button:disabled { cursor: not-allowed; opacity: 0.25; }
+
+.round-number-layout {
+  display: flex;
+  min-width: 0;
+  align-items: flex-start;
+  justify-content: center;
+  gap: 18px;
+  margin-top: 28px;
+  overflow-x: auto;
+  overscroll-behavior-inline: contain;
+  scrollbar-width: none;
+}
+
+.round-number-layout::-webkit-scrollbar { display: none; }
+
+.round-number-group { min-width: 0; flex: 0 0 auto; }
+
+.round-detail-plus { flex: 0 0 auto; }
+
+.selected-winning-balls,
+.selected-bonus-ball { min-height: 54px; justify-content: center; }
+
+.round-number-layout .ball {
+  width: 54px;
+  height: 54px;
+  font-size: 19px;
+}
+
+.round-detail-plus {
+  align-self: center;
+  margin-bottom: 29px;
+  color: var(--muted);
+  font-size: 28px;
+}
+
+.round-number-label {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  margin-top: 16px;
+  color: var(--muted);
+  font-size: 12px;
+  font-weight: 750;
+  white-space: nowrap;
+}
+
+.round-number-label::before,
+.round-number-label::after {
+  content: "";
+  min-width: 16px;
+  height: 1px;
+  flex: 1 1 auto;
+  background: var(--line);
+}
 
 .round-search label {
   display: block;
@@ -405,7 +558,9 @@ footer { padding: 12px 6px 0; color: #6f7580; text-align: center; font-size: 11p
 
 button:focus-visible,
 summary:focus-visible,
-input:focus-visible { outline: 3px solid rgba(201, 255, 80, 0.55); outline-offset: 3px; }
+input:focus-visible,
+select:focus-visible,
+.round-detail:focus-visible { outline: 3px solid rgba(201, 255, 80, 0.55); outline-offset: 3px; }
 
 @keyframes spin { to { transform: rotate(360deg); } }
 
@@ -414,6 +569,31 @@ input:focus-visible { outline: 3px solid rgba(201, 255, 80, 0.55); outline-offse
   .generator-card, .stats-card, .latest-card, .rounds-card { padding: 18px; }
   .balls { gap: 5px; }
   .ball { width: 35px; height: 35px; font-size: 12px; }
+  .round-selector-heading { align-items: flex-end; gap: 10px; }
+  .round-selector-heading h2 { font-size: 21px; }
+  .round-select-label select { width: 112px; min-height: 44px; padding-right: 34px; padding-left: 12px; font-size: 14px; }
+  .round-select-label::after { right: 13px; }
+  .round-detail { padding: 22px 12px 19px; }
+  .round-detail-navigation { grid-template-columns: 44px minmax(0, 1fr) 44px; gap: 6px; }
+  .round-nav-button { width: 44px; height: 44px; font-size: 20px; }
+  .round-detail-heading h3 { font-size: 19px; }
+  .round-detail-heading time { margin-top: 8px; font-size: 11px; }
+  .round-number-layout {
+    display: grid;
+    grid-template-columns: auto auto;
+    justify-content: center;
+    align-items: start;
+    column-gap: 10px;
+    row-gap: 12px;
+    margin-top: 22px;
+    overflow: visible;
+  }
+  #selected-winning-group { grid-column: 1 / -1; }
+  .selected-winning-balls { gap: 3px; }
+  .round-number-layout .ball { width: 30px; height: 30px; font-size: 10px; }
+  .selected-winning-balls, .selected-bonus-ball { min-height: 30px; }
+  .round-detail-plus { align-self: start; margin: 5px 0 0; font-size: 19px; }
+  .round-number-label { gap: 5px; margin-top: 12px; font-size: 10px; }
   .round-row { grid-template-columns: 1fr; gap: 9px; padding: 11px; }
   .round-meta { flex-direction: row; align-items: baseline; justify-content: space-between; }
   .round-balls { gap: 4px; }
@@ -427,6 +607,8 @@ input:focus-visible { outline: 3px solid rgba(201, 255, 80, 0.55); outline-offse
 }
 
 @media (max-width: 350px) {
+  .round-selector-heading { align-items: stretch; flex-direction: column; }
+  .round-select-label select { width: 100%; }
   .set-row .ball { width: 28px; height: 28px; }
   .stats-grid { grid-template-columns: repeat(5, minmax(0, 1fr)); }
   .stat-item { flex-direction: column; }

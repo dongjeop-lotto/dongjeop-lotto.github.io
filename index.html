@@ -27,54 +27,69 @@
 
       <p id="notice" class="notice" role="status" hidden></p>
 
-      <section class="latest-card" aria-labelledby="latest-title">
-        <div class="section-heading">
-          <div>
-            <span class="eyebrow">최근 추첨 번호</span>
-            <h2 id="latest-title"><span id="latest-round">-</span>회</h2>
-          </div>
-          <time id="latest-date" datetime="">확인 중</time>
-        </div>
-        <div id="latest-balls" class="balls latest-balls" aria-live="polite">
-          <span class="loading-text">결과를 불러오고 있습니다</span>
-        </div>
-      </section>
-
       <section id="rounds" class="rounds-card" aria-labelledby="rounds-title">
-        <div class="section-heading">
+        <div class="round-selector-heading">
           <div>
             <span class="eyebrow">1회부터 최신 회차까지</span>
-            <h2 id="rounds-title">전체 당첨 결과</h2>
+            <h2 id="rounds-title">회차별 당첨번호</h2>
           </div>
-          <span id="round-browser-count" class="round-count">확인 중</span>
+          <label class="round-select-label" for="round-select">
+            <span class="sr-only">회차 선택</span>
+            <select id="round-select" aria-controls="round-detail" disabled>
+              <option>불러오는 중</option>
+            </select>
+          </label>
         </div>
-        <p class="description rounds-description">최근 회차부터 둘러보거나 원하는 회차를 바로 찾아보세요.</p>
-        <form id="round-search-form" class="round-search" role="search" novalidate>
-          <label for="round-search-input">회차 번호 검색</label>
-          <div class="round-search-row">
-            <input
-              id="round-search-input"
-              class="round-search-input"
-              type="search"
-              inputmode="numeric"
-              pattern="[0-9]*"
-              maxlength="5"
-              enterkeyhint="search"
-              autocomplete="off"
-              placeholder="예: 1000"
-              aria-describedby="round-search-help"
+        <article
+          id="round-detail"
+          class="round-detail"
+          tabindex="0"
+          aria-labelledby="round-detail-title"
+          aria-describedby="round-keyboard-help"
+          aria-keyshortcuts="ArrowLeft ArrowRight"
+        >
+          <p id="round-keyboard-help" class="sr-only">왼쪽과 오른쪽 화살표 키로 이전 또는 다음 회차를 볼 수 있습니다.</p>
+          <div class="round-detail-navigation">
+            <button
+              id="round-previous"
+              class="round-nav-button"
+              type="button"
+              aria-label="이전 회차 보기"
+              aria-controls="round-detail"
+              disabled
             >
-            <button id="round-search-button" class="round-search-button" type="submit">검색</button>
+              <span aria-hidden="true">←</span>
+            </button>
+            <div class="round-detail-heading">
+              <h3 id="round-detail-title">제 <strong id="selected-round">-</strong>회 추첨 결과</h3>
+              <time id="selected-date" datetime="">확인 중</time>
+            </div>
+            <button
+              id="round-next"
+              class="round-nav-button"
+              type="button"
+              aria-label="다음 회차 보기"
+              aria-controls="round-detail"
+              disabled
+            >
+              <span aria-hidden="true">→</span>
+            </button>
           </div>
-          <p id="round-search-help" class="round-search-help">1회부터 <span id="round-search-latest">-</span>회까지 검색할 수 있습니다.</p>
-        </form>
-        <p id="round-results-status" class="round-results-status" role="status" aria-live="polite">회차를 불러오고 있습니다.</p>
-        <ul id="round-list" class="round-list" aria-label="회차별 당첨 번호">
-          <li class="empty-rounds">결과를 불러오고 있습니다.</li>
-        </ul>
-        <button id="load-more-rounds" class="secondary-button" type="button" aria-controls="round-list" hidden>
-          이전 회차 30개 더 보기
-        </button>
+          <div class="round-number-layout">
+            <div id="selected-winning-group" class="round-number-group" role="group" aria-label="당첨번호를 불러오는 중">
+              <div id="selected-winning-balls" class="balls selected-winning-balls" aria-hidden="true">
+                <span class="loading-text">결과를 불러오고 있습니다</span>
+              </div>
+              <span class="round-number-label" aria-hidden="true">당첨번호</span>
+            </div>
+            <span class="round-detail-plus" aria-hidden="true">+</span>
+            <div id="selected-bonus-group" class="round-number-group bonus-group" role="group" aria-label="보너스번호를 불러오는 중">
+              <div id="selected-bonus-ball" class="balls selected-bonus-ball" aria-hidden="true"></div>
+              <span class="round-number-label" aria-hidden="true">보너스번호</span>
+            </div>
+          </div>
+          <p id="round-detail-status" class="sr-only" role="status" aria-live="polite"></p>
+        </article>
       </section>
 
       <section class="generator-card" aria-labelledby="generator-title">

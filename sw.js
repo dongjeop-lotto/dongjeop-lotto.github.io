@@ -1,4 +1,4 @@
-const CACHE_NAME = "dongjeop-lotto-github-pages-v2";
+const CACHE_NAME = "dongjeop-lotto-github-pages-v3";
 const APP_SHELL = [
   "/",
   "/index.html",
